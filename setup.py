@@ -11,8 +11,10 @@ setup(
     zip_safe=True,
     packages=find_packages(),
     install_requires=[
+        'Pint>=0.16.1',
+        'click>=7.1.2',
+        'paho-mqtt>=1.5.1',
         'prometheus-client>=0.8.0',
         'pyserial>=3.4',
-        'Pint>=0.16.1',
     ],
 )
