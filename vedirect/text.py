@@ -103,5 +103,4 @@ def parse(src):
                 break
             fields[label] = value
 
-        print(fields)
         yield fields
