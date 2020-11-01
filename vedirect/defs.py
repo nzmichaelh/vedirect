@@ -83,7 +83,9 @@ class Err(enum.IntEnum):
 
 
 class Load(enum.IntEnum):
-    """Load is the state of the output to the load. Sent in the `LOAD` field."""
+    """Load is the state of the output to the load.
+
+    Sent in the `LOAD` field."""
     # Off
     OFF = 0
     # On
@@ -124,7 +126,7 @@ VM = Field('VM', 'mV', 'Mid-point voltage of the battery bank')
 DM = Field('DM', '%', 'Mid-point deviation of the battery bank')
 VPV = Field('VPV', 'mV', 'Panel voltage')
 PPV = Field('PPV', 'W', 'Panel power')
-I = Field('I', 'mA', 'Main or channel 1 battery current')
+I = Field('I', 'mA', 'Main or channel 1 battery current')  # noqa: E741
 I2 = Field('I2', 'mA', 'Channel 2 battery current')
 I3 = Field('I3', 'mA', 'Channel 3 battery current')
 IL = Field('IL', 'mA', 'Load current')

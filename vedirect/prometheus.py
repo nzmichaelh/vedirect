@@ -1,12 +1,10 @@
 import enum
 import time
 
-import serial
 import prometheus_client
 import pint
 
 from . import defs
-from . import text
 
 _UNITS = {
     '%': 'percent',

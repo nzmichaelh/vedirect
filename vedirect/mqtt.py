@@ -2,12 +2,10 @@ import enum
 import time
 import json
 
-import serial
 import paho.mqtt.client as mqtt
 import pint
 
 from . import defs
-from . import text
 
 _UNITS = {
     'volt': ('V', 'voltage'),
@@ -79,7 +77,3 @@ class Exporter:
                 payload = str(value)
 
             self._client.publish(topic, payload)
-
-
-if __name__ == '__main__':
-    main()

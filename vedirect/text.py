@@ -18,6 +18,10 @@ _PARSERS = {
 }
 
 
+class ProtocolError(RuntimeError):
+    pass
+
+
 class _Source:
     def __init__(self, f):
         self._f = f
@@ -53,7 +57,7 @@ def _get_value(label: str, value: bytearray) -> object:
                 return value
             assert False, 'Unhandled kind %s' % kind
         return int(value)
-    except ValueError as ex:
+    except ValueError:
         return value
 
 
