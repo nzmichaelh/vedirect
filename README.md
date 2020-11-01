@@ -29,6 +29,7 @@ Ths tool exports MQTT discovery records and should be automatically
 detected by Home Assistant.
 
 ## Note
+
 This is not an official Google product.
 
 -- Michael Hope <michaelh@juju.nz> <mlhx@google.com>
