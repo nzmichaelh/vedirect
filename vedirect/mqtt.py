@@ -72,7 +72,7 @@ class Exporter:
             topic = f'tele/victron_{ser}/{name}'
 
             if isinstance(value, pint.Quantity):
-                payload = value.m
+                payload = round(value.m, 3)
             elif isinstance(value, enum.IntEnum):
                 payload = int(value)
             else:
