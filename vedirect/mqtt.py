@@ -54,7 +54,8 @@ class Exporter:
 
             self._client.publish(
                 f'homeassistant/sensor/victron_{ser}_{labelc}/config',
-                json.dumps(config))
+                json.dumps(config),
+                retain=True)
 
     def export(self, fields):
         ser = fields[defs.SER.label]
