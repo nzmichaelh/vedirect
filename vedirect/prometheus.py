@@ -13,6 +13,19 @@ _UNITS = {
 }
 
 
+class Filter:
+    def __init__(self):
+        self._acc = None
+        self._tau = 0.05
+
+    def step(self, v):
+        if self._acc is None:
+            self._acc = v
+
+        self._acc = self._acc * (1 - self._tau) + v * self._tau
+        return self._acc
+
+
 def _is_enum(v):
     try:
         return issubclass(v, enum.Enum)
@@ -23,6 +36,7 @@ def _is_enum(v):
 class Exporter:
     def __init__(self):
         self._metrics = None
+        self._filters = {}
 
     def _config(self, fields):
         metrics = {}
@@ -85,7 +99,9 @@ class Exporter:
         for label, value in fields.items():
             gauge = self._metrics[label]
             if isinstance(value, pint.Quantity):
-                gauge.labels(ser, pid).set(value.m)
+                f = self._filters.setdefault(label, Filter())
+                m = f.step(value.m)
+                gauge.labels(ser, pid).set(round(m, 3))
             elif isinstance(gauge, prometheus_client.Info):
                 gauge.labels(ser,
                              pid).info({label.lower().replace('#', ''): value})
