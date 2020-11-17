@@ -16,6 +16,7 @@
 import enum
 import json
 import time
+from typing import Dict, Optional
 
 import paho.mqtt.client as mqtt
 import pint
@@ -32,19 +33,19 @@ _UNITS = {
 
 class Exporter:
     def __init__(self, host: str, port: int = 1883):
-        self._last = None
+        self._last = None  # type: Optional[float]
 
         self._client = mqtt.Client()
         self._client.connect_async(host, port, 60)
         self._client.loop_start()
 
-    def _config(self, ser, fields):
+    def _config(self, ser: str, fields: dict) -> None:
         for label, value in fields.items():
             f = defs.FIELD_MAP[label]
             labelc = f.label.replace('#', '').lower()
             device = {
                 'ids': [ser],
-            }
+            }  # type: Dict[str, object]
             if f == defs.PID:
                 device.update({
                     'manufacturer': 'Victron',
@@ -72,7 +73,7 @@ class Exporter:
                 json.dumps(config),
                 retain=True)
 
-    def export(self, fields):
+    def export(self, fields: dict) -> None:
         ser = fields[defs.SER.label]
         if self._last is None:
             self._config(ser, fields)

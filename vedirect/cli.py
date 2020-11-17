@@ -39,7 +39,7 @@ class Echo:
 @click.option('--echo',
               is_flag=True,
               help='If supplied, echo metrics to stdout')
-def app(port, prometheus_port, mqtt_host, echo):
+def app(port: str, prometheus_port: int, mqtt_host: str, echo: bool):
     s = serial.Serial(port, 19200, timeout=0.7)
     exporters = []
 

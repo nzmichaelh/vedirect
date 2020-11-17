@@ -14,6 +14,7 @@
 """Implements a VE.Direct text protocol decoder."""
 
 import enum
+from typing import Iterator, Tuple
 
 import pint
 
@@ -24,7 +25,7 @@ _CR = 0x0D
 _TAB = 0x09
 _CHECKSUM = 'Checksum'
 
-# Parses for certain unique field values.
+# Parsers for certain unique field values.
 _PARSERS = {
     defs.FW.label: lambda x: '%d.%d' % (int(x) // 100, int(x) % 100),
     defs.LOAD.label: lambda x: 1 if x == 'ON' else 0,
@@ -36,6 +37,7 @@ class ProtocolError(RuntimeError):
 
 
 class _Source:
+    """A simple buffered reader."""
     def __init__(self, f):
         self._f = f
         self._ready = b''
@@ -74,7 +76,7 @@ def _get_value(label: str, value: bytearray) -> object:
         return value
 
 
-def _get_line(src):
+def _get_line(src: _Source) -> Tuple[str, object]:
     label = bytearray()
 
     while True:
@@ -99,7 +101,7 @@ def _get_line(src):
     return label, _get_value(label, value)
 
 
-def parse(src):
+def parse(src) -> Iterator[dict]:
     src = _Source(src)
 
     while src.next() != _LF:

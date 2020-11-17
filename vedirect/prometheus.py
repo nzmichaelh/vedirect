@@ -33,7 +33,7 @@ class Filter:
         self._acc = None
         self._tau = 0.05
 
-    def step(self, v):
+    def step(self, v: float) -> float:
         if self._acc is None:
             self._acc = v
 
@@ -41,7 +41,7 @@ class Filter:
         return self._acc
 
 
-def _is_enum(v):
+def _is_enum(v: object) -> bool:
     try:
         return issubclass(v, enum.Enum)
     except TypeError:
