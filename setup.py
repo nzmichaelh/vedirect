@@ -17,4 +17,8 @@ setup(
         'prometheus-client>=0.8.0',
         'pyserial>=3.4',
     ],
+    entry_points='''
+[console_scripts]
+vedirect=vedirect.cli:app
+    ''',
 )

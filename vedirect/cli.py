@@ -42,7 +42,3 @@ def app(port, prometheus_port, mqtt_host, echo):
     for fields in text.parse(s):
         for e in exporters:
             e.export(fields)
-
-
-if __name__ == '__main__':
-    app()
