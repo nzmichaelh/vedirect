@@ -9,7 +9,7 @@ your solar installation and view them in tools like
 
 	python3 setup.py install
 
-    python3 -m vedirect.cli --port=/dev/ttyAMA4 \
+    vedirect --port=/dev/ttyAMA4 \
 		--prometheus_port=7099 \
 		--mqtt_host=localhost
 
