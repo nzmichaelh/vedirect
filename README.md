@@ -1,9 +1,9 @@
 # vedirect - export Victron metrics
 
-This tool parses the [VE.Direct][ved] TEXT protocol and exports the metrics
-over [Prometheus][prom] and [MQTT][mqtt]. This can be used to monitor
-your solar installation and view statistics in tools like
-[Grafana](https://grafana.com/) or [Home Assistant][hass].
+This tool parses the Victron [VE.Direct][ved] TEXT protocol and
+exports the metrics over [Prometheus][prom] and [MQTT][mqtt]. This can
+be used to monitor your solar installation and view statistics in
+tools like [Grafana](https://grafana.com/) or [Home Assistant][hass].
 
 ## Usage
 
