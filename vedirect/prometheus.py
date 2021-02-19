@@ -112,6 +112,9 @@ class Exporter:
         self._blocks.labels(ser, pid).inc()
 
         for label, value in fields.items():
+            if label not in self._metrics:
+                continue
+
             gauge = self._metrics[label]
             if isinstance(value, pint.Quantity):
                 f = self._filters.setdefault(label, Filter())
